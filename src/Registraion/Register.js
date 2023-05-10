@@ -215,8 +215,6 @@ React.useEffect(()=>{
                           type="date"
                           id="dob"
                           onChange={e=>handleChange(e)}
-                          error={errors?.age ? true : false}
-                          helperText={errors?.age}
                           autoComplete="dob"
                         />
                       </Grid>

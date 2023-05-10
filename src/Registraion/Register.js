@@ -33,7 +33,7 @@ const [user,setUser] = React.useState({
     confirmPassword:"",
     gender: "",
     dob: "",
-    age: "",
+    age: {year:"",month:"",day:""},
     email: "",
 })
 
@@ -90,8 +90,7 @@ const validateAge = ()=>{
         var m = m2 - m1;
         var y = y2 - y1;
 
-        y < 18 ? setError({...errors,age:"age must be 18+"}) :setError({})        
-        setUser({...user,age:`${y} years ${m} month ${d} days`})
+        setUser({...user,age:{year:y,month:m,day:d}})
         
 }else{
     setError({})
@@ -228,13 +227,13 @@ React.useEffect(()=>{
                           required
                           fullWidth
                           name="age"
-                          value={user.age}
+                          value={`${user.age.year}years ${user.age.month} months ${user.age.day} day` }
                           label="Age"
                           type="text"
                           id="age"
                           onChange={e=>handleChange(e)}
-                          error={errors?.age ? true : false}
-                          helperText={errors?.age}
+                          error={user.age.year < 18 ? true : false}
+                          helperText={user.age.year < 18 ? " Age must be above 18 years" : null}
                           autoComplete="age"
                         />
                       </Grid>
